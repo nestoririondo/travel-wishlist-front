@@ -42,6 +42,7 @@ const Card = ({ item }) => {
           <h2>{item.name}</h2>
           <p>{item.alpha2Code}</p>
           <p>{item.alpha3Code}</p>
+          <p>{item.visited ? "✔️ Visited" : "❌ Not visited yet"}</p>
         </div>
       )}
       {item && item.first_name && (

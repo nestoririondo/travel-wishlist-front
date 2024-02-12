@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Grid from "./Grid";
 import { useState } from "react";
 import "../styles/Tabs.css";
-import PostStudent from './PostStudent';
+import PostStudent from "./PostStudent";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,19 +54,30 @@ export default function StudentTabs() {
   return (
     <div className="tabs">
       <Box sx={{ width: "100%" }}>
-        <Box sx={{ paddingLeft: "2rem", borderBottom: 2, borderColor: "#8CB9BD" }}>
+        <Box
+          sx={{ paddingLeft: "2rem", borderBottom: 2, borderColor: "#8CB9BD" }}
+        >
           <Tabs
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            TabIndicatorProps={{ style: { backgroundColor: "#8CB9BD" } }}
           >
-            <Tab style={{color: "#8CB9BD"}} label="All students" {...a11yProps(0)} />
-            <Tab style={{color: "#8CB9BD"}} label="Post new student" {...a11yProps(1)} />
+            <Tab
+              style={{ color: "#8CB9BD" }}
+              label="All students"
+              {...a11yProps(0)}
+            />
+            <Tab
+              style={{ color: "#8CB9BD" }}
+              label="Post new student"
+              {...a11yProps(1)}
+            />
           </Tabs>
         </Box>
 
         <CustomTabPanel value={value} index={0}>
-          <Grid itemType="students"/>
+          <Grid itemType="students" />
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={1}>

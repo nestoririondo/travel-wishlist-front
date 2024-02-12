@@ -12,7 +12,7 @@ function App() {
   const handleToggleChange = (newValue) => {
     navigate(`/${newValue}`);
   };
-  
+
   return (
     <>
       <Toggle onChange={handleToggleChange} />

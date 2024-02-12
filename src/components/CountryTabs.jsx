@@ -47,7 +47,7 @@ function a11yProps(index) {
 
 export default function CountryTabs() {
   const [value, setValue] = React.useState(0);
-  const [country, setCountry] = useState("Mongolia");
+  const [country, setCountry] = useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -63,6 +63,7 @@ export default function CountryTabs() {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
+            TabIndicatorProps={{ style: { backgroundColor: "#8CB9BD" } }}
           >
             <Tab
               style={{ color: "#8CB9BD" }}

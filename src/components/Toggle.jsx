@@ -5,6 +5,9 @@ import { useLocation } from "react-router-dom";
 
 export default function Toggle({ onChange }) {
   const handleChange = (newValue) => {
+    if (newValue === null) {
+      onChange("/");
+    }
     onChange(newValue);
   };
   const page = location.pathname.substring(1); // Remove the leading '/'
