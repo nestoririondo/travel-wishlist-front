@@ -26,7 +26,7 @@ export default function CountrySelect({
   const handleChange = (event) => {
     setCountry(event.target.value);
     if (onCountryChange) {
-      onCountryChange(event.target.value);
+      onCountryChange(event.target.value.name);
     }
   };
 
