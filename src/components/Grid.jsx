@@ -19,7 +19,7 @@ const Grid = ({ itemType }) => {
 
   useEffect(() => {
     itemType === "countries" ? getCountries() : getStudents();
-  }, [itemType]);
+  }, [itemType, items]);
 
   return (
     <div className="grid">

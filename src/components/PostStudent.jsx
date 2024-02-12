@@ -25,7 +25,10 @@ export default function PostStudent() {
     try {
       const response = await axios.post(`${SERVER}/students`, input);
       console.log(response.data);
-      setMessage(response.data.message);
+      if (response.data) {
+        setMessage("Student added successfully.");
+        setInput({});
+      }
     } catch (error) {
       console.log(error);
       setMessage(error.response.data.message);
@@ -66,9 +69,14 @@ export default function PostStudent() {
           variant="outlined"
           required
         />
-        {message && <h2>{message}</h2>}
       </Box>
-      <CountrySelect country={country} setCountry={setCountry} onCountryChange={handleCountryChange} />
+      <CountrySelect
+        country={country}
+        setCountry={setCountry}
+        onCountryChange={handleCountryChange}
+      />
+      {message && <h2>{message}</h2>}
+
       <Button
         style={{ backgroundColor: "#8CB9BD" }}
         type="submit"

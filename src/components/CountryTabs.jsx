@@ -63,7 +63,7 @@ export default function CountryTabs() {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
-            TabIndicatorProps={{ style: { backgroundColor: "#8CB9BD" } }}
+            TabIndicatorProps={{ style: { backgroundColor: "#8CB9BD", border: "none" } }}
           >
             <Tab
               style={{ color: "#8CB9BD" }}
