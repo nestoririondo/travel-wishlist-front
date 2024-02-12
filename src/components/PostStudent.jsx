@@ -4,22 +4,26 @@ import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import axios from "axios";
 import { SERVER } from "../constants/server";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import "../styles/Post.css";
+import CountrySelect from "./CountrySelect";
 
-export default function PostCountry() {
+export default function PostStudent() {
   const [input, setInput] = useState({});
   const [message, setMessage] = useState("");
+  const [country, setCountry] = useState("");
 
   const handleChange = (key, value) => {
     setInput({ ...input, [key]: value });
     console.log(input);
   };
-
+  const handleCountryChange = (country) => {
+    setInput((prevInput) => ({ ...prevInput, country }));
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${SERVER}/countries/api`, input);
+      const response = await axios.post(`${SERVER}/students`, input);
       console.log(response.data);
       setMessage(response.data.message);
     } catch (error) {
@@ -41,30 +45,37 @@ export default function PostCountry() {
         <TextField
           onChange={(e) => handleChange(e.target.name, e.target.value)}
           id="outlined-basic"
-          name="name"
-          label="Name"
+          name="first_name"
+          label="First Name"
           variant="outlined"
           required
         />
         <TextField
           onChange={(e) => handleChange(e.target.name, e.target.value)}
           id="outlined-basic"
-          name="alpha2Code"
-          label="Alpha2Code"
+          name="last_name"
+          label="Last Name"
           variant="outlined"
           required
         />
         <TextField
           onChange={(e) => handleChange(e.target.name, e.target.value)}
           id="outlined-basic"
-          name="alpha3Code"
-          label="Alpha3Code"
+          name="email"
+          label="E-Mail"
           variant="outlined"
           required
         />
         {message && <h2>{message}</h2>}
       </Box>
-      <Button style={{backgroundColor: "#8CB9BD"}} type="submit" variant="contained">Submit</Button>
+      <CountrySelect country={country} setCountry={setCountry} onCountryChange={handleCountryChange} />
+      <Button
+        style={{ backgroundColor: "#8CB9BD" }}
+        type="submit"
+        variant="contained"
+      >
+        Submit
+      </Button>
     </form>
   );
 }

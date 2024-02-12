@@ -1,13 +1,22 @@
 import "../styles/Card.css";
 
-const Card = ({ country }) => {
+const Card = ({ item }) => {
   return (
     <>
-      {country && (
-        <div className="card" key={country.alpha2Code}>
-          <h2>{country.name}</h2>
-          <p>{country.alpha2Code}</p>
-          <p>{country.alpha3Code}</p>
+      {item && item.alpha2Code && (
+        <div className="card" key={item.alpha2Code}>
+          <h2>{item.name}</h2>
+          <p>{item.alpha2Code}</p>
+          <p>{item.alpha3Code}</p>
+        </div>
+      )}
+      {item && item.first_name && (
+        <div className="card" key={item._id}>
+          <h2>
+            {item.first_name} {item.last_name}
+          </h2>
+          <p>{item.email}</p>
+          <p>{item.country}</p>
         </div>
       )}
     </>

@@ -1,11 +1,10 @@
 import React from "react";
-import Toggle from "../components/Toggle";
-import StudentsTabs from "../components/StudentsTabs";
+import StudentTabs from "../components/StudentTabs";
 
 const Students = () => {
   return (
     <>
-      <StudentsTabs />
+      <StudentTabs />
     </>
   );
 };

@@ -5,11 +5,12 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "./Grid";
-import BasicSelect from "./Select";
+import BasicSelect from "./CountrySelect";
 import Card from "./Card";
-import BasicTextFields from "./PostCountry";
+import Select from "./CountrySelect"
 import { useState } from "react";
 import "../styles/Tabs.css";
+import PostStudent from './PostStudent';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,7 +46,7 @@ function a11yProps(index) {
   };
 }
 
-export default function CountryTabs() {
+export default function StudentTabs() {
   const [value, setValue] = React.useState(0);
   const [country, setCountry] = useState("");
 
@@ -68,16 +69,11 @@ export default function CountryTabs() {
         </Box>
 
         <CustomTabPanel value={value} index={0}>
-          <Grid />
+          <Grid itemType="students"/>
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={1}>
-          <BasicSelect country={country} setCountry={setCountry} />
-          <Card country={country} />
-        </CustomTabPanel>
-
-        <CustomTabPanel value={value} index={2}>
-          <BasicTextFields />
+          <PostStudent />
         </CustomTabPanel>
       </Box>
     </div>

@@ -5,9 +5,9 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "./Grid";
-import BasicSelect from "./Select";
+import CountrySelect from "./CountrySelect";
 import Card from "./Card";
-import BasicTextFields from "./PostCountry";
+import PostCountry from "./PostCountry";
 import { useState } from "react";
 import "../styles/Tabs.css";
 
@@ -47,7 +47,7 @@ function a11yProps(index) {
 
 export default function CountryTabs() {
   const [value, setValue] = React.useState(0);
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState("Mongolia");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -56,29 +56,43 @@ export default function CountryTabs() {
   return (
     <div className="tabs">
       <Box sx={{ width: "100%" }}>
-        <Box sx={{ paddingLeft: "2rem", borderBottom: 2, borderColor: "#8CB9BD" }}>
+        <Box
+          sx={{ paddingLeft: "2rem", borderBottom: 2, borderColor: "#8CB9BD" }}
+        >
           <Tabs
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab style={{color: "#8CB9BD"}} label="All countries" {...a11yProps(0)} />
-            <Tab style={{color: "#8CB9BD"}} label="Single country" {...a11yProps(1)} />
-            <Tab style={{color: "#8CB9BD"}} label="Post new country" {...a11yProps(2)} />
+            <Tab
+              style={{ color: "#8CB9BD" }}
+              label="All countries"
+              {...a11yProps(0)}
+            />
+            <Tab
+              style={{ color: "#8CB9BD" }}
+              label="Single country"
+              {...a11yProps(1)}
+            />
+            <Tab
+              style={{ color: "#8CB9BD" }}
+              label="Post new country"
+              {...a11yProps(2)}
+            />
           </Tabs>
         </Box>
 
         <CustomTabPanel value={value} index={0}>
-          <Grid />
+          <Grid itemType="countries" />
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={1}>
-          <BasicSelect country={country} setCountry={setCountry} />
-          <Card country={country} />
+          <CountrySelect country={country} setCountry={setCountry} />
+          {country && <Card item={country} />}
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={2}>
-          <BasicTextFields />
+          <PostCountry />
         </CustomTabPanel>
       </Box>
     </div>

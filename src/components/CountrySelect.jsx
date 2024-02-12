@@ -2,12 +2,16 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import { useState, useEffect } from "react";
-import { fetchCountries } from "../api/countries";
-import "../styles/Select.css"
+import { fetchCountries } from "../api/endpoints";
+import "../styles/Select.css";
+import Select from "@mui/material/Select";
 
-export default function BasicSelect({ country, setCountry }) {
+export default function CountrySelect({
+  country,
+  setCountry,
+  onCountryChange,
+}) {
   const [countries, setCountries] = useState([]);
 
   const getCountries = async () => {
@@ -21,6 +25,9 @@ export default function BasicSelect({ country, setCountry }) {
 
   const handleChange = (event) => {
     setCountry(event.target.value);
+    if (onCountryChange) {
+      onCountryChange(event.target.value);
+    }
   };
 
   return (

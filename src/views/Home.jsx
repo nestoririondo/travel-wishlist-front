@@ -1,5 +1,5 @@
 import CountryTabs from "../components/CountryTabs";
-import StudentsTabs from "../components/StudentsTabs";
+import StudentTabs from "../components/StudentTabs";
 import { Routes, Route } from "react-router-dom";
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Routes>
         <Route path="/countries" element={<CountryTabs />} />
-        <Route path="/students" element={<StudentsTabs />} />
+        <Route path="/students" element={<StudentTabs />} />
       </Routes>
     </>
   );
