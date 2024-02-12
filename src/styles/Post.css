@@ -1,0 +1,11 @@
+.post {
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.post button {
+    margin: 0.5rem;
+    width: 20%;
+    align-self: center;
+}
