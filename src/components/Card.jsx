@@ -4,27 +4,37 @@ import { SERVER } from "../constants/server";
 
 const Card = ({ item }) => {
   const deleteCountry = async (code) => {
-    try {
-      const response = await axios.delete(`${SERVER}/countries/api/${code}`);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+    const userConfirmed = window.confirm(
+      "Are you sure you want to delete this country?"
+    );
+    if (userConfirmed) {
+      try {
+        const response = await axios.delete(`${SERVER}/countries/api/${code}`);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   const deleteStudent = async (code) => {
-    try {
-      console.log(code);
-      const response = await axios.delete(`${SERVER}/students/${code}`);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+    const userConfirmed = window.confirm(
+      "Are you sure you want to delete this student?"
+    );
+    if (userConfirmed) {
+      try {
+        console.log(code);
+        const response = await axios.delete(`${SERVER}/students/${code}`);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
-
   return (
     <>
       {item && item.alpha2Code && (
         <div
+          style={{ cursor: "pointer" }}
           onClick={(e) => deleteCountry(item.alpha2Code)}
           className="card"
           key={item.alpha2Code}
@@ -36,6 +46,7 @@ const Card = ({ item }) => {
       )}
       {item && item.first_name && (
         <div
+          style={{ cursor: "pointer"}}
           onClick={(e) => deleteStudent(item._id)}
           className="card"
           key={item._id}

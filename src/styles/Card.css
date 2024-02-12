@@ -6,6 +6,8 @@
   text-align: center;
   transition: all 0.2s ease-in-out;
   background-color: #ECB159;
+  word-wrap: break-word;
+
   &:hover {
     transform: scale(1.03);
   }

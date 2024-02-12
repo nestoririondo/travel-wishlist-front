@@ -37,7 +37,7 @@ export default function PostStudent() {
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
+          "& > :not(style)": { ml: 2, width: "25ch" },
         }}
         noValidate
         autoComplete="off"

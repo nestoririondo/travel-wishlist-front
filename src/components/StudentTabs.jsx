@@ -5,9 +5,6 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "./Grid";
-import BasicSelect from "./CountrySelect";
-import Card from "./Card";
-import Select from "./CountrySelect"
 import { useState } from "react";
 import "../styles/Tabs.css";
 import PostStudent from './PostStudent';
