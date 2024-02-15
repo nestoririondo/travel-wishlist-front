@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import "../styles/Login.css";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -22,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input
@@ -44,7 +45,6 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       {message && <p>{message}</p>}
-      {token && <p>{token}</p>}
     </div>
   );
 };
