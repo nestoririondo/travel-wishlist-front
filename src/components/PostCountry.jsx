@@ -2,14 +2,15 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import axios from "axios";
-import { SERVER } from "../constants/server";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import "../styles/Post.css";
+import { postCountry } from "../api/endpoints.js";
+import { useAuth } from '../context/AuthContext.jsx'
 
 export default function PostCountry() {
   const [input, setInput] = useState({});
   const [message, setMessage] = useState("");
+  const { token } = useAuth();
 
   const handleChange = (key, value) => {
     setInput({ ...input, [key]: value });
@@ -18,14 +19,7 @@ export default function PostCountry() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(`${SERVER}/countries/api`, input);
-      console.log(response.data);
-      setMessage(response.data.message);
-    } catch (error) {
-      console.log(error);
-      setMessage(error.response.data.message);
-    }
+    await postCountry(input, token, setMessage, setInput);
   };
 
   return (
@@ -64,7 +58,13 @@ export default function PostCountry() {
         />
         {message && <h2>{message}</h2>}
       </Box>
-      <Button style={{backgroundColor: "#8CB9BD"}} type="submit" variant="contained">Submit</Button>
+      <Button
+        style={{ backgroundColor: "#8CB9BD" }}
+        type="submit"
+        variant="contained"
+      >
+        Submit
+      </Button>
     </form>
   );
 }

@@ -1,33 +1,24 @@
 import "../styles/Card.css";
-import axios from "axios";
-import { SERVER } from "../constants/server";
+import { delCountry, delStudent } from "../api/endpoints";
+import { useAuth } from "../context/AuthContext";
 
 const Card = ({ item }) => {
+  const { token } = useAuth();
   const deleteCountry = async (code) => {
     const userConfirmed = window.confirm(
       "Are you sure you want to delete this country?"
     );
     if (userConfirmed) {
-      try {
-        const response = await axios.delete(`${SERVER}/countries/api/${code}`);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      await delCountry(token, code);
     }
   };
+
   const deleteStudent = async (code) => {
     const userConfirmed = window.confirm(
       "Are you sure you want to delete this student?"
     );
     if (userConfirmed) {
-      try {
-        console.log(code);
-        const response = await axios.delete(`${SERVER}/students/${code}`);
-        console.log(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      await delStudent(token, code);
     }
   };
   return (
@@ -47,7 +38,7 @@ const Card = ({ item }) => {
       )}
       {item && item.first_name && (
         <div
-          style={{ cursor: "pointer"}}
+          style={{ cursor: "pointer" }}
           onClick={(e) => deleteStudent(item._id)}
           className="card"
           key={item._id}

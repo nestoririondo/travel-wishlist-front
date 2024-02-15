@@ -2,37 +2,30 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import axios from "axios";
-import { SERVER } from "../constants/server";
 import Button from "@mui/material/Button";
 import "../styles/Post.css";
 import CountrySelect from "./CountrySelect";
+import { postStudent } from '../api/endpoints';
+import { useAuth } from "../context/AuthContext";
 
 export default function PostStudent() {
   const [input, setInput] = useState({});
   const [message, setMessage] = useState("");
   const [country, setCountry] = useState("");
+  const { token } = useAuth();
 
   const handleChange = (key, value) => {
     setInput({ ...input, [key]: value });
     console.log(input);
   };
+
   const handleCountryChange = (country) => {
     setInput((prevInput) => ({ ...prevInput, country }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(`${SERVER}/students`, input);
-      console.log(response.data);
-      if (response.data) {
-        setMessage("Student added successfully.");
-        setInput({});
-      }
-    } catch (error) {
-      console.log(error);
-      setMessage(error.response.data.message);
-    }
+    await postStudent(input, token, setMessage, setInput)
   };
 
   return (
