@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("jwt") || null);
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const login = async (userData, setMessage) => {
     try {
@@ -18,10 +19,12 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("jwt", token);
       setToken(token);
       setUser(user);
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log(error);
       setMessage(error.response.data.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -41,18 +44,17 @@ export const AuthProvider = ({ children }) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log("user response", response);
         setUser(response.data);
       } catch (e) {
         console.log(e);
-        // logout();
+        logout();
       }
     }
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     fetchUser();
-  }, []);
+  }, [token]);
 
   const value = { user, token, login, logout };
 

@@ -9,11 +9,10 @@ const Login = () => {
   });
   const [message, setMessage] = useState(null)
   
-  const { login, token } = useAuth();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(userData);
     setUserData((prev) => ({ ...prev, [name]: value }));
   };
 

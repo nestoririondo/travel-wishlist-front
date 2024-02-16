@@ -1,0 +1,15 @@
+.notfound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #f8f9fa;
+}
+
+.notfound h1,
+.notfound p {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}

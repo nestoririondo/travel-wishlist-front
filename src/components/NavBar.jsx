@@ -9,7 +9,7 @@ const NavBar = () => {
     <nav className="navbar">
       {user ? (
         <>
-          <p>Welcome {user.username}</p>
+          <NavLink to='/' style={{fontWeight: "bold"}}>Welcome, {user.username}!</NavLink>
           <button onClick={logout}>Logout</button>
         </>
       ) : (

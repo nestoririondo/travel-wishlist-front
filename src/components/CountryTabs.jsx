@@ -57,7 +57,7 @@ export default function CountryTabs() {
     <div className="tabs">
       <Box sx={{ width: "100%" }}>
         <Box
-          sx={{ paddingLeft: "2rem", borderBottom: 2, borderColor: "#8CB9BD" }}
+          sx={{ paddingLeft: "0rem", borderBottom: 2, borderColor: "#8CB9BD" }}
         >
           <Tabs
             value={value}

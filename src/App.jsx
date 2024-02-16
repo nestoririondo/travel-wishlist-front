@@ -1,12 +1,13 @@
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./views/Home";
 import Countries from "./views/Countries";
 import Students from "./views/Students";
 import NavBar from "./components/NavBar";
 import SignUp from "./views/SignUp";
 import Login from "./views/Login";
-import { useAuth } from "./context/AuthContext";
+import NotFound from "./views/NotFound";
+import "./App.css";
 
 function App() {
   const { token } = useAuth();
@@ -28,28 +29,11 @@ function App() {
             <Route path="/login" element={<Login />} />
           </>
         )}
+        <Route path="/not-found" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/not-found" replace />} />
       </Routes>
     </>
   );
 }
 
 export default App;
-
-// return (
-//   <>
-//     <Navbar/>
-//     <Routes>
-//       {publicRoutes.map(({path, element}) => (
-//         <Route key={path} path={path} element={!token ? element : <Navigate to="/" />}/>
-//       ))}
-
-//       {privateRoutes.map(({path, element}) => (
-//         <Route key={path} path={path} element={token ? element : <Navigate to="/login" />}/>
-//       ))}
-//       {/* Explicit route for the NotFound page */}
-//       <Route path="/not-found" element={<NotFound/>}/>
-
-//       {/* Catch-all routes for 404 Found page */}
-//       <Route path="*" element={<Navigate to="/not-found" replace/>}/>
-//     </Routes>
-//   </>

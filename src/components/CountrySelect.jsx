@@ -34,7 +34,7 @@ export default function CountrySelect({
 
   return (
     <div className="select">
-      <Box sx={{ minWidth: 120 }}>
+      <Box sx={{ minWidth: 0 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Country</InputLabel>
           <Select
