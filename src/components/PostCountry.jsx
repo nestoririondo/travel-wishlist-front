@@ -3,9 +3,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import "../styles/Post.css";
 import { postCountry } from "../api/endpoints.js";
-import { useAuth } from '../context/AuthContext.jsx'
+import { useAuth } from "../context/AuthContext.jsx";
 
 export default function PostCountry() {
   const [input, setInput] = useState({});
@@ -26,9 +25,7 @@ export default function PostCountry() {
     <form className="post" onSubmit={handleSubmit}>
       <Box
         component="form"
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
-        }}
+        sx={{ mt: 2, mb: 2, width: "100%", gap: 2, display: "flex" }}
         noValidate
         autoComplete="off"
       >
@@ -57,14 +54,22 @@ export default function PostCountry() {
           required
         />
         {message && <h2>{message}</h2>}
-      </Box>
-      <Button
-        style={{ backgroundColor: "#8CB9BD" }}
-        type="submit"
-        variant="contained"
+      </Box>{" "}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-        Submit
-      </Button>
+        <Button
+          style={{ backgroundColor: "#8CB9BD", marginTop: "1rem" }}
+          type="submit"
+          variant="contained"
+        >
+          Submit
+        </Button>
+      </div>
     </form>
   );
 }

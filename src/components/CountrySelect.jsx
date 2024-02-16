@@ -4,9 +4,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import { useState, useEffect } from "react";
 import { fetchCountries } from "../api/endpoints";
-import "../styles/Select.css";
 import Select from "@mui/material/Select";
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from "../context/AuthContext";
 
 export default function CountrySelect({
   country,
@@ -14,7 +13,7 @@ export default function CountrySelect({
   onCountryChange,
 }) {
   const [countries, setCountries] = useState([]);
-  const {token} = useAuth();
+  const { token } = useAuth();
 
   const getCountries = async () => {
     const response = await fetchCountries(token);
@@ -34,7 +33,7 @@ export default function CountrySelect({
 
   return (
     <div className="select">
-      <Box sx={{ minWidth: 0 }}>
+      <Box sx={{ mb: 2, mt: 2 }}>
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Country</InputLabel>
           <Select
@@ -43,6 +42,7 @@ export default function CountrySelect({
             value={country}
             label="Country"
             onChange={handleChange}
+            sx={{m:0}}
           >
             {countries.map((country) => (
               <MenuItem value={country}>{country.name}</MenuItem>

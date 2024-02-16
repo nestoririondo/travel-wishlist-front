@@ -3,9 +3,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import Button from "@mui/material/Button";
-import "../styles/Post.css";
 import CountrySelect from "./CountrySelect";
-import { postStudent } from '../api/endpoints';
+import { postStudent } from "../api/endpoints";
 import { useAuth } from "../context/AuthContext";
 
 export default function PostStudent() {
@@ -25,16 +24,14 @@ export default function PostStudent() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await postStudent(input, token, setMessage, setInput)
+    await postStudent(input, token, setMessage, setInput);
   };
 
   return (
     <form className="post" onSubmit={handleSubmit}>
       <Box
         component="form"
-        sx={{
-          "& > :not(style)": { ml: 2, width: "25ch" },
-        }}
+        sx={{ mt: 2, width: "100%", gap: 2, display: "flex" }}
         noValidate
         autoComplete="off"
       >
@@ -69,14 +66,16 @@ export default function PostStudent() {
         onCountryChange={handleCountryChange}
       />
       {message && <h2>{message}</h2>}
-
-      <Button
-        style={{ backgroundColor: "#8CB9BD" }}
-        type="submit"
-        variant="contained"
-      >
-        Submit
-      </Button>
+      <div style={{display:"flex", justifyContent: "center", alignItems:"center"}}>
+        <Button
+          style={{ backgroundColor: "#8CB9BD" }}
+          type="submit"
+          variant="contained"
+          sx={{ mt: 2 }}
+        >
+          Submit
+        </Button>
+      </div>
     </form>
   );
 }
